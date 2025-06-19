@@ -10,7 +10,7 @@ class Servicio {
 
     obtenerUsuario = async id => {
         if (id) {
-            const usuario = await this.#model.obtenerUsuario(id);
+            const usuario = await this.#model.obtenerUsuarioPorId(id);
             return usuario;
         } else {
             const usuarios = await this.#model.obtenerUsuarios();
