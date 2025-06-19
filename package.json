@@ -1,0 +1,34 @@
+{
+  "name": "proyecto-pong",
+  "version": "1.0.0",
+  "description": "Proyecto del Grupo A para TP2",
+  "homepage": "https://github.com/florgrun/ProyectoPongTP2#readme",
+  "license": "ISC",
+  "author": "GrupoA",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js --ignore /*.json"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.8.0",
+    "axios": "^1.9.0",
+    "chai": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "mocha": "^11.6.0",
+    "mongoose": "^8.15.1",
+    "supertest": "^7.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/florgrun/ProyectoPongTP2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florgrun/ProyectoPongTP2.git"
+  }
+}
