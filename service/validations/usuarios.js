@@ -2,7 +2,6 @@ import Joi from 'joi';
 
 export const validar = usuario => {
     const usuarioSchema = Joi.object({
-        id: Joi.number().integer().required(),
         username: Joi.string().min(3).max(30).required(),
         email: Joi.string().email().required(),
         password: Joi.string().min(8).max(50).required(),
