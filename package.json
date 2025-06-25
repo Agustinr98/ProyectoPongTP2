@@ -8,9 +8,11 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/*.test.js --timeout 10000",
     "start": "node app.js",
-    "dev": "nodemon app.js --ignore /*.json"
+    "dev": "nodemon app.js --ignore /*.json",
+    "test-manual": "mocha test/usuario.test.js --timeout 10000",
+    "test-api-int": "mocha test/api-int.test.js --timeout 10000"
   },
   "dependencies": {
     "@faker-js/faker": "^9.8.0",
