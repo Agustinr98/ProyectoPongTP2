@@ -1,8 +1,11 @@
 import { expect } from "chai";
+import jwt from "jsonwebtoken";
 import supertest from "supertest";
 import generador from "./generador/usuario.js";
 import Server from "../server.js"
 
+const fakeUser = { id: process.env.JWT_TEST_ID, username: process.env.JWT_TEST_USERNAME, password: process.env.JWT_TEST_PASSWORD };
+const token = jwt.sign(fakeUser, process.env.JWT_SECRET, { expiresIn: '10m' });
 let id;
 
 describe('*** Test del servicio APIRESTful (interno) ***', () => {
@@ -64,7 +67,7 @@ describe('*** Test del servicio APIRESTful (interno) ***', () => {
 
             const usuario = generador.get();
             const req = supertest(app);
-            const res = await req.put(`/api/usuarios/${id}`).send(usuario);
+            const res = await req.put(`/api/usuarios/${id}`).set('Authorization', `Bearer ${token}`).send(usuario);
             const userActualizado = res.body;
             expect(res.status).to.eql(200);
             expect(userActualizado).to.have.property('_id');
@@ -82,7 +85,7 @@ describe('*** Test del servicio APIRESTful (interno) ***', () => {
             const app = await server.start();
 
             const req = supertest(app);
-            const res = await req.delete(`/api/usuarios/${id}`);
+            const res = await req.delete(`/api/usuarios/${id}`).set('Authorization', `Bearer ${token}`);
             const userEliminado = res.body;
             expect(res.status).to.eql(200);
             expect(userEliminado).to.have.property('_id');

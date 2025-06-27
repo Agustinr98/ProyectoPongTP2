@@ -1,11 +1,11 @@
-import ModelFactory from '../model/DAO/usuariosFactory.js';
+import ModelUsuarioMongo from '../model/DAO/usuariosMongoDB.js';
 import { validar } from './validations/usuarios.js';
 
 class Servicio {
     #model;
 
-    constructor(persistencia) {
-        this.#model = ModelFactory.get(persistencia);
+    constructor() {
+        this.#model = new ModelUsuarioMongo();
     }
 
     obtenerUsuario = async id => {
