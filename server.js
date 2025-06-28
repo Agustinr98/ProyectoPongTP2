@@ -1,16 +1,15 @@
 import express from 'express';
 import RouterUsuarios from './router/usuarios.js';
+import RouterAuth from './router/auth.js';
 import CnxMongoDB from './model/DBMongo.js';
 import cors from 'cors';
 
 class Server {
     #port
-    #persistencia
     #server
 
-    constructor(port, persistencia) {
+    constructor(port) {
         this.#port = port;
-        this.#persistencia = persistencia;
         this.#server = null;
     }
 
@@ -29,14 +28,13 @@ class Server {
         // ---------------------
         //        Routing
         // ---------------------
-        app.use('/api/usuarios', new RouterUsuarios(this.#persistencia).start());
+        app.use('/api/usuarios', new RouterUsuarios().start());
+        app.use('/api/auth', new RouterAuth().start());
 
         // ----------------------------------------
         //        Conectar a la base de datos
         // ----------------------------------------
-        if (this.#persistencia === 'DB') {
-            await CnxMongoDB.conectar();
-        }
+        await CnxMongoDB.conectar();
 
         // ---------------------
         //        Listener

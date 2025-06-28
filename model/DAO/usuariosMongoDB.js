@@ -16,6 +16,12 @@ class ModelUsuarioMongo {
         return usuario;
     }
 
+    obtenerUsuarioPorUsername = async username => {
+        if (!CnxMongoDB.connectionOK) throw new Error("No hay conexión a la base de datos");
+        const usuario = await UsuarioModel.findOne({username: username });
+        return usuario;
+    }
+
     guardarUsuario = async usuario => {
         if (!CnxMongoDB.connectionOK) throw new Error("No hay conexión a la base de datos");
         const usuarioModel = new UsuarioModel(usuario);

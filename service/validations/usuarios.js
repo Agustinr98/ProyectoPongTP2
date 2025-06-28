@@ -6,7 +6,7 @@ export const validar = usuario => {
         email: Joi.string().email().required(),
         password: Joi.string().min(8).max(50).required(),
         provincia: Joi.string().min(1).max(35).optional(),
-        puntajeMaximo: Joi.number().integer().min(0).max(999999).required()
+        puntajeMaximo: Joi.number().integer().min(0).max(999999).optional()
     });
 
     const { error } = usuarioSchema.validate(usuario);

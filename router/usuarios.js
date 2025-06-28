@@ -1,11 +1,12 @@
 import express from 'express';
 import Controlador from '../controller/usuarios.js';
+import { autenticarJWT } from '../middleware/auth.js';
 
 class Router {
     #controlador;
 
-    constructor(persistencia) {
-        this.#controlador = new Controlador(persistencia);
+    constructor() {
+        this.#controlador = new Controlador();
     }
 
     start() {
@@ -13,8 +14,8 @@ class Router {
 
         router.get('/:id?', this.#controlador.obtenerUsuarios);
         router.post('/', this.#controlador.registrarUsuario);
-        router.put('/:id', this.#controlador.actualizarUsuario);
-        router.delete('/:id', this.#controlador.eliminarUsuario);
+        router.put('/:id', autenticarJWT, this.#controlador.actualizarUsuario);
+        router.delete('/:id', autenticarJWT, this.#controlador.eliminarUsuario);
 
         return router
     }
