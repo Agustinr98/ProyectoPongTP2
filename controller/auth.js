@@ -18,7 +18,7 @@ class Controlador {
 
     refresh = async (req, res) => {
         try {
-            const refreshData = await this.#servicio.refresh(req.body.refreshToken);
+            const refreshData = await this.#servicio.refresh(req.body);
             res.json(refreshData);
         } catch (error) {
             res.status(403).json({ error: error.message });
