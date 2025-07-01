@@ -1,9 +1,9 @@
-import express from 'express';
-import RouterUsuarios from './router/usuarios.js';
-import RouterAuth from './router/auth.js';
-import CnxMongoDB from './model/DBMongo.js';
 import cors from 'cors';
+import express from 'express';
+import CnxMongoDB from './model/DBMongo.js';
+import RouterAuth from './router/auth.js';
 import RouterUbicacion from './router/ubicacion.js';
+import RouterUsuarios from './router/usuarios.js';
 
 
 class Server {
@@ -31,8 +31,8 @@ class Server {
         //        Routing
         // ---------------------
         app.use('/api/usuarios', new RouterUsuarios().start());
-        app.use('/api/auth', new RouterAuth().start());
         app.use('/api/ubicacion', new RouterUbicacion().start());
+        app.use('/api/auth', new RouterAuth().start());
 
 
         // ----------------------------------------

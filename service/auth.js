@@ -35,7 +35,8 @@ class Servicio {
             }
 
             const payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
-            return await this.generarAccessToken({ _id: payload.id, username: payload.username });
+            const accessToken = await this.generarAccessToken({ _id: payload.id, username: payload.username });
+            return { accessToken, refreshToken, usuario: { id: usuario._id, username: usuario.username, email: usuario.email } };
         } catch {
             throw new Error('Refresh token inválido o expirado');
         }
